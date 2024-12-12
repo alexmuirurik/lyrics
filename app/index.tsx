@@ -1,18 +1,18 @@
 import React from 'react';
-import { AnimationType, INFINITE_ANIMATION_ITERATIONS, LatLng, LeafletView } from 'react-native-leaflet-view';
-import WebView from 'react-native-webview'
-import MapView, { UrlTile, WMSTile } from 'react-native-maps';
+import { Dimensions, FlatList, Platform, ScrollView, StyleSheet, View } from 'react-native';
 import DashboardLayout from '@/components/layouts/dashboardlayout';
-import { Dimensions, Platform, StyleSheet, View } from 'react-native';
-import { Maphtml } from '@/components/maps/maphtml';
+import LyricsSlider from '@/components/cards/lyricsslider';
 
 const IndexScreen = () => {
+    const lyrics = [{ id: 1 }]
     return (
         <DashboardLayout>
-            <View className='h-screen w-screen'>
-                <WebView className='h-screen w-screen' source={{ html: Maphtml }} />
+            <View>
+                <FlatList data={lyrics} renderItem={item => <LyricsSlider key={item.item.id} />} />
             </View>
-            
+            <ScrollView className='h-screen w-screen'>
+
+            </ScrollView>
         </DashboardLayout>
 
     );
