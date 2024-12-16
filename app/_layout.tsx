@@ -1,37 +1,36 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { useFonts } from 'expo-font';
 import { Drawer } from 'expo-router/drawer'
 import * as SplashScreen from 'expo-splash-screen';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { StatusBar } from 'react-native';
+import { StatusBar, Text } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { FontAwesome } from '@expo/vector-icons';
 import Drawercomponent from '@/components/layouts/drawercomponent';
+import { useLocalSearchParams, usePathname } from 'expo-router';
+import { fonts } from '@/lib/fonts';
 import 'react-native-reanimated';
 import '@/global.css'
+import Headericon from '@/components/layouts/headericon';
+import Headersearch from '@/components/layouts/headersearch';
+import Headerback from '@/components/layouts/headerback';
 
-// Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
-
-export default function RootLayout() {
+SplashScreen.preventAutoHideAsync()
+const RootLayout = () => {
 	const colorScheme = useColorScheme();
-	const [loaded] = useFonts({
-		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-	});
-
-	useEffect(() => { if (loaded) { SplashScreen.hideAsync() } }, [loaded]);
-
-	if (!loaded) {
-		return null;
-	}
+	const hash = usePathname().split('#')[1] ?? 'Home'
+	const [loaded] = useFonts(fonts);
+	useEffect(() => { if (loaded) { SplashScreen.hideAsync() }}, [loaded]);
+	if (!loaded) { return null }
 
 	return (
-		<ThemeProvider value={colorScheme === 'dark' ? { ...DarkTheme, colors: { ...DarkTheme.colors, background: '#223869' } } : DefaultTheme}>
+		<ThemeProvider value={colorScheme === 'dark' ? { ...DarkTheme, colors: { ...DarkTheme.colors, background: '#4758ba' } } : DefaultTheme}>
 			<GestureHandlerRootView style={{ flex: 1 }}>
 				<Drawer 
 					drawerContent={Drawercomponent}
 					screenOptions={{
+						headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
 						drawerStyle: {
 							backgroundColor: '#4758ba',
 							borderRadius: 1,
@@ -44,44 +43,56 @@ export default function RootLayout() {
 							borderWidth: 1
 						},
 						headerStyle: {
-							backgroundColor: '#4758ba'
+							backgroundColor: '#4758ba',
+							borderColor: '#5a73cd'
 						},
 						drawerActiveTintColor: 'white',
 						drawerInactiveTintColor: 'lightgray'
 					}}
 				>
-					<Drawer.Screen
-						name="index"
-						options={{
-							title: 'Home',
-							drawerIcon: ({ size, color }) => <FontAwesome name='home' size={size} color={color} />,
-						}}
+					<Drawer.Screen 
+						name="index" 
+						options={{ 
+							headerTitle: () => <Text className='text-gray-200 text-2xl font-bold capitalize'>{hash}</Text>,
+							drawerItemStyle: { 
+								display: 'none' 
+							} 
+						}}    
 					/>
 					<Drawer.Screen 
-						name="kabuku/index" 
-						options={{
-							title: 'Kabuku',
-							drawerIcon: ({ size, color }) => <FontAwesome name='book' size={size} color={color} />
-						}}
+						name="search" 
+						options={{ 
+							headerTitle: () => <Headersearch />,
+							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
+							headerRight: () => '',
+							drawerItemStyle: { 
+								display: 'none' 
+							} 
+						}} 
 					/>
 					<Drawer.Screen 
-						name="kiroho/index" 
-						options={{
-							title: 'Kiroho',
-							drawerIcon: ({ size, color }) => <FontAwesome name='heart' size={size} color={color} />
-						}}
+						name='categories' 
+						options={{ 
+							title: 'Categories',
+							drawerItemStyle: { 
+								display: 'none' 
+							} 
+						}} 
 					/>
 					<Drawer.Screen 
-						name="latest/index" 
-						options={{
-							title: 'Latest',
-							drawerIcon: ({ size, color }) => <FontAwesome name='google' size={size} color={color} />
-						}}
+						name="[single]" 
+						options={{ 
+							title: 'Single',
+							drawerItemStyle: { 
+								display: 'none' 
+							} 
+						}} 
 					/>
-					<Drawer.Screen name="search" options={{ drawerItemStyle: { display: 'none' } }} />
 				</Drawer>
 			</GestureHandlerRootView>
 			<StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={'#4758ba'} />
 		</ThemeProvider>
 	);
 }
+
+export default RootLayout

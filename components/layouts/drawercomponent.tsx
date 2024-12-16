@@ -1,6 +1,9 @@
 import React from 'react';
-import { Image, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer'
+import { routes } from '@/lib/routes';
+import { FontAwesome } from '@expo/vector-icons';
+import { router } from 'expo-router';
 
 const Drawercomponent = (props: any) => {
     return (
@@ -10,7 +13,7 @@ const Drawercomponent = (props: any) => {
                     <View className='bg-[#1b2b60] flex-row items-center gap-1 border border-[#5a73cd] rounded-lg ps-1 py-0 pe-16'>
                         <Image className='h-12 w-12' source={require('@/assets/images/splash-icon.png')} />
                         <Text className='text-gray-500 text-xl font-bold font-poppins'>
-                            Kikuyu Lyrics
+                            Gospel Lyrics
                         </Text>
                     </View>
                     <View className='py-4 mb-4'>
@@ -20,10 +23,28 @@ const Drawercomponent = (props: any) => {
                     </View>
                 </View>
                 <DrawerItemList {...props} />
-                
+                {routes.map(route =>
+                    <DrawerItem
+                        {...props}
+                        style={styles.drawer}
+                        key={route.name}
+                        label={route.title}
+                        icon={({ color, size }) => <FontAwesome name={route.name} color={color} size={size} />}
+                        onPress={() => router.navigate(`/${route.link}`)}
+                    />
+                )}
             </DrawerContentScrollView>
         </View>
     );
 }
+
+const styles = StyleSheet.create({
+    drawer: {
+        borderRadius: 10,
+        borderColor: '#5a73cd',
+        marginBottom: 10,
+        borderWidth: 1
+    }
+})
 
 export default Drawercomponent;

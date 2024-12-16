@@ -1,11 +1,12 @@
+import { AntDesign, FontAwesome } from '@expo/vector-icons';
+import { Link } from 'expo-router';
 import React from 'react';
-import { Image, View } from 'react-native';
 
-const Headericon = () => {
+const Headericon = ({tintColor}: {tintColor?: string}) => {
     return (
-        <View>
-            <Image source={require('@/assets/images/splash-icon.png')} />
-        </View>
+        <Link className='px-4' href={{pathname: '/search'}}>
+           <AntDesign name='search1' size={20} color={tintColor} className=' transform scale-y[-1]' />
+        </Link>
     );
 }
 

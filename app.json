@@ -1,52 +1,61 @@
 {
-	"expo": {
-		"name": "lyrics",
-		"slug": "lyrics",
-		"version": "1.0.0",
-		"orientation": "portrait",
-		"backgroundColor": "#4549ab",
-		"icon": "./assets/images/splash-icon.png",
-		"scheme": "myapp",
-		"userInterfaceStyle": "dark",
-		"newArchEnabled": true,
-		"splash": {
-			"image": "./assets/images/splash-icon.png",
-			"resizeMode": "contain",
-			"backgroundColor": "#4549ab"
-		},
-		"ios": {
-			"supportsTablet": true
-		},
-		"android": {
-			"splash": {
-				"image": "./assets/images/splash-icon.png",
-				"resizeMode": "contain",
-				"backgroundColor": "#4549ab"
-			},
-			"adaptiveIcon": {
-				"foregroundImage": "./assets/images/splash-icon.png",
-				"backgroundColor": "#4549ab"
-			}
-		},
-		"web": {
-			"bundler": "metro",
-			"output": "static",
-			"favicon": "./assets/images/splash-icon.png"
-		},
-		"plugins": [
-			"expo-router",
-			[
-				"expo-splash-screen",
-				{
-					"image": "./assets/images/splash-icon.png",
-					"imageWidth": 200,
-					"resizeMode": "contain",
-					"backgroundColor": "#4549ab"
-				}
-			]
-		],
-		"experiments": {
-			"typedRoutes": true
-		}
-	}
+  "expo": {
+    "name": "lyrics",
+    "slug": "lyrics",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "backgroundColor": "#4549ab",
+    "icon": "./assets/images/splash-icon.png",
+    "scheme": "myapp",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#4549ab"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "splash": {
+        "image": "./assets/images/splash-icon.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#4549ab"
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/splash-icon.png",
+        "backgroundColor": "#4549ab"
+      },
+      "package": "alexmuiruri.com.lyrics"
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/splash-icon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/images/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#4549ab"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "6db21d20-be62-411e-a670-19287b16a837"
+      }
+    }
+  }
 }
