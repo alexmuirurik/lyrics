@@ -1,19 +1,23 @@
 export interface song {
     song: string, 
+    url?: string, 
     lyrics?: string
 }
 
 export const sampleSongs: song[] = [
     {
         song: "Babe I'm Gonna Leave you",
+        url: 'https://img-9gag-fun.9cache.com/photo/aAyGQVp_460svav1.mp4',
         lyrics: "Babe, baby, baby, I'm gonna leave you\nI said baby, you know I'm gonna leave you\nI'll leave you when the summertime\nLeave you when the summer comes a rollin'\nLeave you when the summer comes along\nBabe, babe, babe, babe, babe, babe, baby, baby\nI don't want to leave you\nI ain't jokin' woman, I got to ramble\nOh yeah\nBaby, baby, babe, I believin'\nWe really got to ramble\nI can hear it callin' me the way it used to do\nI can hear it callin' me back home\nBabe, I'm gonna leave you\nOh, baby, you know, I've really got to leave you\nOh I can hear it callin 'me\nI said don't you hear it callin' me the way it used to do?\nOh\nI know, I know\nI know I never never never never never gonna leave your babe\nBut I got to go away from this place\nI've got to quit you, yeah\nOoh, baby baby baby baby baby baby ooh\nDon't you hear it callin' me?\nWoman, woman, I know, I know\nIt feels good to have you back again\nAnd I know that one day baby, it's really gonna grow, yes it is\nWe gonna go walkin' through the park every day\nCome what may, every day\nOh, mama baby\nI'm gonna leave you go away\nIt was really, really good\nYou made me happy every single day\nBut now\nI've got to go away\nBaby, baby, baby\nThat's when it's callin' me\nI said that's when it's callin' me back home"
     },
     {
         song: "Communication Breakdown",
+        url: 'https://img-9gag-fun.9cache.com/photo/a7o110L_460svav1.mp4',
         lyrics: "Hey, girl, stop what you're doin'\n\nHey, girl, you'll drive me to ruin\nI don't know what it is I like about you, but I like it a lot\nWon't you let me hold you, now, let me feel your lovin' touch\nCommunication breakdown, it's always the same\nHavin' a nervous breakdown, a-drive me insane\nHey, girl, I got somethin' I think you oughta know\nHey, babe, I wanna tell ya that I love you so\nI wanna hold you in my arms, yeah\nI'm never gonna let you go, 'cause I like your charm\nCommunication breakdown, it's always the same\nHavin' a nervous breakdown, drive me insane, ow, suck\nCommunication breakdown, it's always the same\nHavin' a nervous breakdown, a-drive me insane, yeah\nCommunicate, I want you to love me all night\nI want you to love me all night, I want, hey, I want, yeah\nI want you to love me, I want you to love, babe\nI want you to love, yeah, I want you to love\nHey, I want you to love, yeah, I want you to"
     },
     {
         song: "Dazed and Confused",
+        url: 'https://img-9gag-fun.9cache.com/photo/a0eZewq_460svav1.mp4',
         lyrics: "Been dazed and confused\n\nFor so long, it's not true\nWanted a woman, never bargained for you\nLotsa people talkin',\nFew of them know\nSoul of a woman was created below, yeah\nYou hurt and abuse,\nTellin' all of your lies\nRun 'round, sweet baby, lord, how they hypnotize\nSweet little baby, I don't know where you been\nGonna love you, baby, here I come again\nEvery day I work so hard, bringin' home my hard-earned pay\nTry to love you, baby, but you push me away\nDon't know where you're goin',\nOnly know just where you've been\nSweet little baby, I want you again\nAh, ah, ah, ah\n(Did you ever look up my woman)\nAh, ah-ah-ah, ah-ah-ah-ah, ah-ah-ah-ah\nAh-ah-ah-ah-ah-ah-ah-ah-ah-ah, ah\nAhh, ah, ah, ah, ah\nAh-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ah-ahhh, ahh\nOh, yeah, alright, alright\nAh, ah, ah, ah, ah-ah-ah, ah-ah-ah, ah\nAh-ah, ah-ah, ah-ah, ah-ah\nOh, I don't like when you're mystifyin' me\nOh, don't leave me so confused, now\nWhoa, baby\nBeen dazed and confused for so long, it's not true\nWanted a woman, never bargained for you\nTake it easy, baby,\nLet them say what they will\nTongue wag so much when I send you the bill,\nOh, yeah, alright"
     },
     {

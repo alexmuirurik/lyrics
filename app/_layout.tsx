@@ -15,11 +15,12 @@ import '@/global.css'
 import Headericon from '@/components/layouts/headericon';
 import Headersearch from '@/components/layouts/headersearch';
 import Headerback from '@/components/layouts/headerback';
+import { routes, ToTitleCase } from '@/lib/routes';
 
 SplashScreen.preventAutoHideAsync()
 const RootLayout = () => {
 	const colorScheme = useColorScheme();
-	const hash = usePathname().split('#')[1] ?? 'Home'
+	const hash = usePathname().split('/')
 	const [loaded] = useFonts(fonts);
 	useEffect(() => { if (loaded) { SplashScreen.hideAsync() }}, [loaded]);
 	if (!loaded) { return null }
@@ -30,7 +31,6 @@ const RootLayout = () => {
 				<Drawer 
 					drawerContent={Drawercomponent}
 					screenOptions={{
-						headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
 						drawerStyle: {
 							backgroundColor: '#4758ba',
 							borderRadius: 1,
@@ -53,27 +53,38 @@ const RootLayout = () => {
 					<Drawer.Screen 
 						name="index" 
 						options={{ 
-							headerTitle: () => <Text className='text-gray-200 text-2xl font-bold capitalize'>{hash}</Text>,
+							title: 'Home',
+							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
 							drawerItemStyle: { 
 								display: 'none' 
 							} 
 						}}    
 					/>
 					<Drawer.Screen 
+						name='categories/[category]'
+						options={{
+							title: ToTitleCase(hash[2]),
+							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
+							drawerItemStyle: {
+								display: 'none'
+							}
+						}}
+					/>
+					<Drawer.Screen 
 						name="search" 
 						options={{ 
 							headerTitle: () => <Headersearch />,
-							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
-							headerRight: () => '',
 							drawerItemStyle: { 
 								display: 'none' 
 							} 
 						}} 
 					/>
 					<Drawer.Screen 
-						name='categories' 
+						name='categories/index' 
 						options={{ 
 							title: 'Categories',
+							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
+							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
 							drawerItemStyle: { 
 								display: 'none' 
 							} 
@@ -82,7 +93,9 @@ const RootLayout = () => {
 					<Drawer.Screen 
 						name="[single]" 
 						options={{ 
-							title: 'Single',
+							title: ToTitleCase(hash[1]),
+							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
+							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
 							drawerItemStyle: { 
 								display: 'none' 
 							} 

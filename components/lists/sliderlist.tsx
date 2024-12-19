@@ -11,7 +11,7 @@ const SliderList = () => {
                 <Text className='text-gray-400 text-lg font-bold '>
                     Music Genres
                 </Text>
-                <Link href={{pathname: '/categories'}} className=' border border-[#5a73cd] rounded-lg py-2 px-4'>
+                <Link href={'/categories'} className=' border border-[#5a73cd] rounded-lg py-2 px-4'>
                     <Text className='text-blue-400 text-sm font-bold font-magnumGothic italic'>
                         View More
                     </Text>

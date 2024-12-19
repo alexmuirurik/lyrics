@@ -7,11 +7,8 @@ import { View } from 'react-native';
 
 const Songcard = ({ song }: { song: song }) => {
     return (
-        <TouchableOpacity 
-            onPress={() => router.push({pathname: '/[single]', params: {single: song.song}})}
-            className='bg-[#1b2b60] flex-row justify-between items-center border border-[#5a73cd] rounded-md py-3 px-8'
-        >
-            <View className='space-y-3' >
+        <View  className='bg-[#1b2b60] flex-row justify-between items-center border border-[#5a73cd] rounded-md py-3 px-8'>
+            <TouchableOpacity onPress={() => router.push({pathname: '/[single]', params: {single: song.song}})} className='w-11/12 space-y-3' >
                 <View>
                     <Text className='text-white'>
                         {song.song}
@@ -22,9 +19,11 @@ const Songcard = ({ song }: { song: song }) => {
                         </Text>
                     </View>
                 </View>
-            </View>
-            <FontAwesome name='ellipsis-v' size={20} color={'gray'} />
-        </TouchableOpacity>
+            </TouchableOpacity>
+            <TouchableOpacity className='px-8 flex-row items-center justify-center rounded-md' >
+                <FontAwesome className='h-6 w-6' name='ellipsis-v' size={20} color={'white'} />
+            </TouchableOpacity>
+        </View>
     );
 }
 
