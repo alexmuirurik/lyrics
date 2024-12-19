@@ -11,7 +11,7 @@ const IndexScreen = () => {
         setRefreshing(true);
         setTimeout(() => setRefreshing(false), 2000);
     }, [])
-    useEffect(() => { setTimeout(() => setRefreshing(false), 1000) }, [])
+    useEffect(() => { setTimeout(() => setRefreshing(false), 2000) }, [])
     return (
         <DashboardLayout>
             <Animated.ScrollView 

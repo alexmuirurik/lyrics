@@ -16,93 +16,97 @@ import Headericon from '@/components/layouts/headericon';
 import Headersearch from '@/components/layouts/headersearch';
 import Headerback from '@/components/layouts/headerback';
 import { routes, ToTitleCase } from '@/lib/routes';
+import { SearchContextProvider } from '@/hooks/useSearch';
 
 SplashScreen.preventAutoHideAsync()
 const RootLayout = () => {
 	const colorScheme = useColorScheme();
 	const hash = usePathname().split('/')
 	const [loaded] = useFonts(fonts);
-	useEffect(() => { if (loaded) { SplashScreen.hideAsync() }}, [loaded]);
+	useEffect(() => { if (loaded) { SplashScreen.hideAsync() } }, [loaded]);
 	if (!loaded) { return null }
 
 	return (
 		<ThemeProvider value={colorScheme === 'dark' ? { ...DarkTheme, colors: { ...DarkTheme.colors, background: '#4758ba' } } : DefaultTheme}>
-			<GestureHandlerRootView style={{ flex: 1 }}>
-				<Drawer 
-					drawerContent={Drawercomponent}
-					screenOptions={{
-						drawerStyle: {
-							backgroundColor: '#4758ba',
-							borderRadius: 1,
-							borderColor: '#5a73cd'
-						},
-						drawerItemStyle: {
-							borderRadius: 10,
-							borderColor: '#5a73cd',
-							marginBottom: 10,
-							borderWidth: 1
-						},
-						headerStyle: {
-							backgroundColor: '#4758ba',
-							borderColor: '#5a73cd'
-						},
-						drawerActiveTintColor: 'white',
-						drawerInactiveTintColor: 'lightgray'
-					}}
-				>
-					<Drawer.Screen 
-						name="index" 
-						options={{ 
-							title: 'Home',
-							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
-							drawerItemStyle: { 
-								display: 'none' 
-							} 
-						}}    
-					/>
-					<Drawer.Screen 
-						name='categories/[category]'
-						options={{
-							title: ToTitleCase(hash[2]),
-							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
+			<SearchContextProvider>
+				<GestureHandlerRootView style={{ flex: 1 }}>
+					<Drawer
+						drawerContent={Drawercomponent}
+						screenOptions={{
+							drawerStyle: {
+								backgroundColor: '#4758ba',
+								borderRadius: 1,
+								borderColor: '#5a73cd'
+							},
 							drawerItemStyle: {
-								display: 'none'
-							}
+								borderRadius: 10,
+								borderColor: '#5a73cd',
+								marginBottom: 10,
+								borderWidth: 1
+							},
+							headerStyle: {
+								backgroundColor: '#4758ba',
+								borderColor: '#5a73cd'
+							},
+							drawerActiveTintColor: 'white',
+							drawerInactiveTintColor: 'lightgray'
 						}}
-					/>
-					<Drawer.Screen 
-						name="search" 
-						options={{ 
-							headerTitle: () => <Headersearch />,
-							drawerItemStyle: { 
-								display: 'none' 
-							} 
-						}} 
-					/>
-					<Drawer.Screen 
-						name='categories/index' 
-						options={{ 
-							title: 'Categories',
-							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
-							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
-							drawerItemStyle: { 
-								display: 'none' 
-							} 
-						}} 
-					/>
-					<Drawer.Screen 
-						name="[single]" 
-						options={{ 
-							title: ToTitleCase(hash[1]),
-							headerLeft: ({tintColor}) => <Headerback tintColor={tintColor} />,
-							headerRight: ({tintColor}) => <Headericon tintColor={tintColor} />,
-							drawerItemStyle: { 
-								display: 'none' 
-							} 
-						}} 
-					/>
-				</Drawer>
-			</GestureHandlerRootView>
+					>
+						<Drawer.Screen
+							name="index"
+							options={{
+								title: 'Home',
+								headerRight: ({ tintColor }) => <Headericon tintColor={tintColor} />,
+								drawerItemStyle: {
+									display: 'none'
+								}
+							}}
+						/>
+						<Drawer.Screen
+							name='categories/[category]'
+							options={{
+								title: ToTitleCase(hash[2]),
+								headerRight: ({ tintColor }) => <Headericon tintColor={tintColor} />,
+								drawerItemStyle: {
+									display: 'none'
+								}
+							}}
+						/>
+						<Drawer.Screen
+							name="search"
+							options={{
+								headerLeft: ({ tintColor }) => <Headerback tintColor={tintColor} />,
+								headerTitle: () => <Headersearch />,
+								drawerItemStyle: {
+									display: 'none'
+								}
+							}}
+						/>
+						<Drawer.Screen
+							name='categories/index'
+							options={{
+								title: 'Categories',
+								headerLeft: ({ tintColor }) => <Headerback tintColor={tintColor} />,
+								headerRight: ({ tintColor }) => <Headericon tintColor={tintColor} />,
+								drawerItemStyle: {
+									display: 'none'
+								}
+							}}
+						/>
+						<Drawer.Screen
+							name="[single]"
+							options={{
+								title: ToTitleCase(hash[1]),
+								headerLeft: ({ tintColor }) => <Headerback tintColor={tintColor} />,
+								headerRight: ({ tintColor }) => <Headericon tintColor={tintColor} />,
+								drawerItemStyle: {
+									display: 'none'
+								}
+							}}
+						/>
+					</Drawer>
+				</GestureHandlerRootView>
+			</SearchContextProvider>
 			<StatusBar barStyle={colorScheme === 'dark' ? 'light-content' : 'dark-content'} backgroundColor={'#4758ba'} />
 		</ThemeProvider>
 	);

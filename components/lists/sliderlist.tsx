@@ -7,7 +7,7 @@ import { Link } from 'expo-router';
 const SliderList = () => {
     return (
         <View className='shadow-sm'>
-            <View className='flex-row justify-between items-center px-2 py-3'>
+            <View className='flex-row justify-between items-center ps-2 py-3'>
                 <Text className='text-gray-400 text-lg font-bold '>
                     Music Genres
                 </Text>
